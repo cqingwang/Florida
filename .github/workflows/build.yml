@@ -12,7 +12,7 @@ on:
 
 jobs: 
   check_version:
-    runs-on: act_runner
+    runs-on: ML
 
     outputs:
       FRIDA_VERSION: ${{ steps.pullFridaLatestRelease.outputs.FRIDA_VERSION }}
@@ -86,7 +86,7 @@ jobs:
 
   create_release:
     needs: check_version
-    runs-on: act_runner
+    runs-on: ML
     if: needs.check_version.outputs.ALREADY_RELEASE != '1'
 
     steps:
@@ -101,7 +101,7 @@ jobs:
           prerelease: false
 
   android_build:
-    runs-on: act_runner
+    runs-on: ML
     needs: [check_version, create_release]
 
     steps:
